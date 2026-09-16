@@ -1,6 +1,8 @@
 package com.higor.cadastrousuarios.Dto;
 
-public record UserDto(
+import lombok.Getter;
+
+public record UserRequestDto(
     String nome,
     String email,
     String senha
