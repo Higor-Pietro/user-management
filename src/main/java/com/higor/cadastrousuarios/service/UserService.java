@@ -3,6 +3,7 @@ package com.higor.cadastrousuarios.service;
 import org.springframework.stereotype.Service;
 
 import com.higor.cadastrousuarios.Dto.UserRequestDto;
+import com.higor.cadastrousuarios.Dto.UserResponseDto;
 import com.higor.cadastrousuarios.model.User;
 import com.higor.cadastrousuarios.repository.UserRepository;
 
@@ -14,7 +15,7 @@ public class UserService {
     public UserService (UserRepository repository){
         this.userRepository = repository;
     }
- public User cadastrar(UserRequestDto dto) {
+ public UserResponseDto cadastrar(UserRequestDto dto) {
 
         User user = new User();
 
@@ -22,7 +23,12 @@ public class UserService {
         user.setEmail(dto.email());
         user.setSenha(dto.senha());
 
-        return userRepository.save(user);
+       UserResponseDto userResponseDto = new UserResponseDto(dto.nome(), dto.email());
+        
+        userRepository.save(user);
+        
+        return userResponseDto;
+       
 
 
     }
