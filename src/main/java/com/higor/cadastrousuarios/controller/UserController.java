@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.higor.cadastrousuarios.Dto.UserRequestDto;
+import com.higor.cadastrousuarios.model.User;
 import com.higor.cadastrousuarios.service.UserService;
 
 @RestController 
@@ -26,7 +27,7 @@ public class UserController {
     }
 
     @PostMapping 
-    public void cadastrarUsuario (@RequestBody UserRequestDto dto){    
+    public User cadastrarUsuario (@RequestBody UserRequestDto dto){    
         return userService.cadastrar(dto);
     }
 }
