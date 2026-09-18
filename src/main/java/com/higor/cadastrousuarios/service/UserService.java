@@ -20,7 +20,7 @@ public class UserService {
     }
 
 
-public UserResponseDto cadastrar(UserRequestDto dto) {
+public UserResponseDto cadastrar(UserRequestDto dto){
 
         User user = new User();
 
@@ -51,5 +51,17 @@ public List<UserResponseDto> listar(){
             .toList();
 
     }
+
+
+public UserResponseDto removerUser(UserRequestDto dto){
+
+    
+    userRepository.deleteById(dto.id());
+
+    UserResponseDto userResponseDto = new UserResponseDto(dto.nome(), dto.email());
+
+
+    return userResponseDto;
+}
 
 }
