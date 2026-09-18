@@ -1,5 +1,7 @@
 package com.higor.cadastrousuarios.controller;
 
+import java.util.List;
+
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -23,8 +25,9 @@ public class UserController {
 
 
     @GetMapping 
-    public void carregarPagina(){
+    public List<UserResponseDto> carregarPagina (){
 
+        return userService.listar();
     }
 
     @PostMapping 

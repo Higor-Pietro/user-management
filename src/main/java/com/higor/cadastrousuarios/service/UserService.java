@@ -1,5 +1,8 @@
 package com.higor.cadastrousuarios.service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.stereotype.Service;
 
 import com.higor.cadastrousuarios.Dto.UserRequestDto;
@@ -15,7 +18,9 @@ public class UserService {
     public UserService (UserRepository repository){
         this.userRepository = repository;
     }
- public UserResponseDto cadastrar(UserRequestDto dto) {
+
+
+public UserResponseDto cadastrar(UserRequestDto dto) {
 
         User user = new User();
 
@@ -23,13 +28,28 @@ public class UserService {
         user.setEmail(dto.email());
         user.setSenha(dto.senha());
 
-       UserResponseDto userResponseDto = new UserResponseDto(dto.nome(), dto.email());
+       UserResponseDto userResponseDto = new UserResponseDto( dto.nome(), dto.email());
         
         userRepository.save(user);
         
         return userResponseDto;
        
-
+ 
 
     }
+
+
+public List<UserResponseDto> listar(){
+
+    List <User> users = userRepository.findAll();
+
+     return users.stream()
+            .map( user -> new UserResponseDto(
+                    user.getNome(),
+                    user.getEmail()
+            ))
+            .toList();
+
+    }
+
 }
